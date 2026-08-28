@@ -1,0 +1,13 @@
+{
+  "name": "wse-token-optimization-layer",
+  "version": "1.0.0",
+  "description": "A lightweight public-safe context optimization layer for reducing unnecessary LLM token usage.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4",
+    "typescript": "^5.8.3"
+  }
+}
