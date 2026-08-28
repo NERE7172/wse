@@ -44,3 +44,9 @@ export {
   createWSEConfig,
   type WSEConfig,
 } from "./config";
+
+export {
+  resolveSecret,
+  type SecretSource,
+  type SecretBoundaryResult,
+} from "./secret-boundary";
