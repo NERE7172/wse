@@ -24,3 +24,10 @@ export {
   type CompactPayloadOptions,
   type CompactPayloadResult,
 } from "./compact-payload";
+
+export {
+  verifyPayload,
+  type VerificationIssue,
+  type VerificationResult,
+  type VerifyOptions,
+} from "./verifier";
