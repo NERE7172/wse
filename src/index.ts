@@ -1,4 +1,4 @@
-export {
+compact-payloadtPayloadResulttPayload {
   optimizeContext,
   type ContextItem,
   type OptimizerOptions,
@@ -40,8 +40,7 @@ export {
 } from "./pipeline";
 
 export {
-  DEFAULT_WSE_CONFIG,
-  createWSEConfig,
+  DEFAULT_WSE_CONWSEConfigeateWSEConfig,
   type WSEConfig,
 } from "./config";
 
@@ -50,3 +49,8 @@ export {
   type SecretSource,
   type SecretBoundaryResult,
 } from "./secret-boundary";
+
+export {
+  redactSecrets,
+  type RedactionOptions,
+} from "./secret-redaction";
