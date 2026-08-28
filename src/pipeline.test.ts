@@ -35,30 +35,32 @@ it("redacts secrets before state delta and payload generation", () => {
 
   expect(result.delta).not.toBeNull();
 
+  // Non-secret state changes should still appear in the delta.
+  expect(
+    result.delta?.changes.find(
+      (change) => change.key === "hp",
+    ),
+  ).toEqual({
+    key: "hp",
+    previous: 100,
+    current: 90,
+  });
+
+  // Secret fields are redacted before delta calculation.
+  // Therefore secret changes should not appear in the delta.
   expect(
     result.delta?.changes.find(
       (change) => change.key === "apiKey",
     ),
-  ).toEqual({
-    key: "apiKey",
-    previous: "[REDACTED]",
-    current: "[REDACTED]",
-  });
+  ).toBeUndefined();
 
   expect(
     result.delta?.changes.find(
       (change) => change.key === "credentials",
     ),
-  ).toEqual({
-    key: "credentials",
-    previous: {
-      accessToken: "[REDACTED]",
-    },
-    current: {
-      accessToken: "[REDACTED]",
-    },
-  });
+  ).toBeUndefined();
 
+  // Secret values must never appear in the generated payload.
   expect(result.payload.payload).not.toContain(
     "old-secret",
   );
@@ -75,6 +77,7 @@ it("redacts secrets before state delta and payload generation", () => {
     "new-token",
   );
 
+  // The redacted marker should be present.
   expect(result.payload.payload).toContain(
     "[REDACTED]",
   );
