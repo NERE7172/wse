@@ -88,3 +88,65 @@ it("redacts secrets before state delta and payload generation", () => {
 
   expect(result.verification.valid).toBe(true);
 });
+
+it("runs the complete context processing pipeline", () => {
+  const result = processContext(
+    {
+      previousState: {
+        world: "Aurelia",
+        day: 1,
+        status: "idle",
+      },
+      currentState: {
+        world: "Aurelia",
+        day: 2,
+        status: "active",
+      },
+      context: [
+        {
+          id: "world",
+          content: "World: Aurelia",
+          priority: 100,
+        },
+        {
+          id: "day",
+          content: "Current day: 2",
+          priority: 90,
+        },
+        {
+          id: "duplicate",
+          content: "World: Aurelia",
+          priority: 10,
+        },
+      ],
+    },
+    {
+      verify: {
+        requiredKeys: ["context", "stateDelta"],
+      },
+    },
+  );
+
+  // Optimizer should remove the duplicate context item.
+  expect(result.optimized.items.length).toBe(2);
+  expect(result.optimized.removedItems).toBeGreaterThan(0);
+
+  // State delta should detect the changed fields.
+  expect(result.delta).not.toBeNull();
+  expect(result.delta?.changed).toContain("day");
+  expect(result.delta?.changed).toContain("status");
+
+  // The compact payload should be generated.
+  expect(result.payload.payload).toBeTruthy();
+  expect(result.payload.compactedCharacters).toBeGreaterThan(0);
+
+  // Token estimation should run on the final payload.
+  expect(result.tokens.characters).toBe(
+    result.payload.payload.length,
+  );
+
+  expect(result.tokens.tokens).toBeGreaterThan(0);
+
+  // Verification should succeed.
+  expect(result.verification.valid).toBe(true);
+});
