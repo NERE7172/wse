@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { optimizeContext } from "./optimizer";
+import { optimizeContext } from "./optimizer.js";
 
 describe("optimizeContext", () => {
   it("removes duplicate context items", () => {

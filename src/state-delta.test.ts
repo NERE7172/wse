@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { computeStateDelta } from "./state-delta";
+import { computeStateDelta } from "./state-delta.js";
 
 describe("computeStateDelta", () => {
   it("detects changed values", () => {

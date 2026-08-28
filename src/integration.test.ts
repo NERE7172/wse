@@ -8,7 +8,7 @@ import {
   optimizeContext,
   type ContextItem,
   type StateRecord,
-} from "./index";
+} from "./index.js";
 
 describe("WSE integration", () => {
   it("exports and connects all core modules", () => {

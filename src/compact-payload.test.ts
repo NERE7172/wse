@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compactPayload } from "./compact-payload";
+import { compactPayload } from "./compact-payload.js";
 
 describe("compactPayload", () => {
   it("normalizes unnecessary whitespace", () => {

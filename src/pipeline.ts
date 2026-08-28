@@ -2,36 +2,36 @@ import {
   optimizeContext,
   type ContextItem,
   type OptimizerOptions,
-} from "./optimizer";
+} from "./optimizer.js";
 
 import {
   estimateTokens,
   type TokenEstimate,
   type TokenEstimatorOptions,
-} from "./token-estimator";
+} from "./token-estimator.js";
 
 import {
   computeStateDelta,
   type StateRecord,
   type StateDelta,
-} from "./state-delta";
+} from "./state-delta.js";
 
 import {
   compactPayload,
   type CompactPayloadOptions,
   type CompactPayloadResult,
-} from "./compact-payload";
+} from "./compact-payload.js";
 
 import {
   verifyPayload,
   type VerificationResult,
   type VerifyOptions,
-} from "./verifier";
+} from "./verifier.js";
 
 import {
   redactSecrets,
   type RedactionOptions,
-} from "./secret-redaction";
+} from "./secret-redaction.js";
 
 export type PipelineOptions = {
   optimizer?: OptimizerOptions;

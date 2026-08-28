@@ -7,7 +7,7 @@ import {
   computeStateDelta,
   compactPayload,
   verifyPayload,
-} from "./index";
+} from "./index.js";
 
 describe("WSE public API", () => {
   it("exposes all core public functions", () => {

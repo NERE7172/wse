@@ -3,7 +3,7 @@ import { bench, describe } from "vitest";
 import {
   processContext,
   type PipelineInput,
-} from "./pipeline";
+} from "./pipeline.js";
 
 function createContext(size: number): PipelineInput {
   const context = Array.from(

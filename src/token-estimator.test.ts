@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   estimateTokens,
   estimateContextTokens,
-} from "./token-estimator";
+} from "./token-estimator.js";
 
 describe("estimateTokens", () => {
   it("estimates tokens from character count", () => {

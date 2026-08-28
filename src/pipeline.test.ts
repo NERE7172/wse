@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { processContext } from "./pipeline";
+import { processContext } from "./pipeline.js";
 
 it("redacts secrets before state delta and payload generation", () => {
   const result = processContext(

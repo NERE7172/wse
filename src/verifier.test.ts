@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { verifyPayload } from "./verifier";
+import { verifyPayload } from "./verifier.js";
 
 describe("verifyPayload", () => {
   it("passes when all required keys are preserved", () => {

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_WSE_CONFIG,
   createWSEConfig,
-} from "./config";
+} from "./config.js";
 
 describe("WSE configuration", () => {
   it("provides safe defaults", () => {

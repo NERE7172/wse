@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { redactSecrets } from "./secret-redaction";
+import { redactSecrets } from "./secret-redaction.js";
 
 describe("secret redaction", () => {
   it("redacts common secret fields", () => {

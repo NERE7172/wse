@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveSecret } from "./secret-boundary";
+import { resolveSecret } from "./secret-boundary.js";
 
 describe("secret boundary", () => {
   it("does not create a secret when none is provided", () => {
