@@ -31,3 +31,10 @@ export {
   type VerificationResult,
   type VerifyOptions,
 } from "./verifier";
+
+export {
+  processContext,
+  type PipelineInput,
+  type PipelineOptions,
+  type PipelineResult,
+} from "./pipeline";
