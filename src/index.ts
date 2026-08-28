@@ -38,3 +38,9 @@ export {
   type PipelineOptions,
   type PipelineResult,
 } from "./pipeline";
+
+export {
+  DEFAULT_WSE_CONFIG,
+  createWSEConfig,
+  type WSEConfig,
+} from "./config";
