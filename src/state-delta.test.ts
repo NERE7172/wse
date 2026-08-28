@@ -110,3 +110,58 @@ describe("computeStateDelta", () => {
     expect(result.changed).toEqual(["player"]);
   });
 });
+
+  it("handles objects with different key order", () => {
+    const result = computeStateDelta(
+      {
+        player: {
+          hp: 100,
+          mana: 50,
+        },
+      },
+      {
+        player: {
+          mana: 50,
+          hp: 100,
+        },
+      },
+    );
+
+    expect(result.changes).toHaveLength(0);
+    expect(result.changed).toHaveLength(0);
+  });
+
+  it("handles NaN values", () => {
+    const result = computeStateDelta(
+      {
+        value: NaN,
+      },
+      {
+        value: NaN,
+      },
+    );
+
+    expect(result.changes).toHaveLength(0);
+  });
+
+  it("handles circular state values", () => {
+    const previous: StateRecord = {};
+    const current: StateRecord = {};
+
+    const previousNode: Record<string, unknown> = {};
+    const currentNode: Record<string, unknown> = {};
+
+    previousNode.self = previousNode;
+    currentNode.self = currentNode;
+
+    previous.node = previousNode;
+    current.node = currentNode;
+
+    const result = computeStateDelta(
+      previous,
+      current,
+    );
+
+    expect(result.changes).toHaveLength(0);
+    expect(result.changed).toHaveLength(0);
+  });
