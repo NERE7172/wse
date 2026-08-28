@@ -18,3 +18,9 @@ export {
   type StateChange,
   type StateDelta,
 } from "./state-delta";
+
+export {
+  compactPayload,
+  type CompactPayloadOptions,
+  type CompactPayloadResult,
+} from "./compact-payload";
