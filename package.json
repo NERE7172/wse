@@ -4,7 +4,8 @@
   "description": "A lightweight public-safe context optimization layer for reducing unnecessary LLM token usage.",
   "type": "module",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "benchmark": "vitest bench"
   },
   "devDependencies": {
     "vitest": "^3.2.4",
