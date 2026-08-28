@@ -6,6 +6,7 @@ export {
 
 export {
   estimateTokens,
+  estimateContextTokens,
   type TokenEstimate,
   type TokenEstimatorOptions,
 } from "./token-estimator";
@@ -29,13 +30,14 @@ export {
 } from "./verifier";
 
 export {
-  redactSecrets,
-  type RedactionOptions,
-} from "./secret-redaction";
-
-export {
   processContext,
   type PipelineOptions,
   type PipelineInput,
   type PipelineResult,
 } from "./pipeline";
+
+export {
+  resolveSecret,
+  type SecretSource,
+  type SecretBoundaryResult,
+} from "./secret-boundary";
