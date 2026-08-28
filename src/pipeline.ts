@@ -28,11 +28,17 @@ import {
   type VerifyOptions,
 } from "./verifier";
 
+import {
+  redactSecrets,
+  type RedactionOptions,
+} from "./secret-redaction";
+
 export type PipelineOptions = {
   optimizer?: OptimizerOptions;
   tokenizer?: TokenEstimatorOptions;
   compact?: CompactPayloadOptions;
   verify?: VerifyOptions;
+  redaction?: RedactionOptions;
 };
 
 export type PipelineInput = {
@@ -49,6 +55,20 @@ export type PipelineResult = {
   verification: VerificationResult;
 };
 
+function redactState(
+  state: StateRecord | undefined,
+  options?: RedactionOptions,
+): StateRecord | undefined {
+  if (state === undefined) {
+    return undefined;
+  }
+
+  return redactSecrets(
+    state,
+    options,
+  ) as StateRecord;
+}
+
 export function processContext(
   input: PipelineInput,
   options: PipelineOptions = {},
@@ -58,12 +78,22 @@ export function processContext(
     options.optimizer,
   );
 
+  const previousState = redactState(
+    input.previousState,
+    options.redaction,
+  );
+
+  const currentState = redactState(
+    input.currentState,
+    options.redaction,
+  );
+
   const delta =
-    input.previousState !== undefined &&
-    input.currentState !== undefined
+    previousState !== undefined &&
+    currentState !== undefined
       ? computeStateDelta(
-          input.previousState,
-          input.currentState,
+          previousState,
+          currentState,
         )
       : null;
 
