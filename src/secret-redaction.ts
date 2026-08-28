@@ -41,7 +41,12 @@ function redactValue(
   for (const [key, child] of Object.entries(
     value as Record<string, unknown>,
   )) {
-    if (shouldRedactKey(key)) {
+    if (
+      shouldRedactKey(key) &&
+      (child === null ||
+        child === undefined ||
+        typeof child !== "object")
+    ) {
       result[key] = replacement;
       continue;
     }
