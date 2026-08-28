@@ -1,38 +1,39 @@
 # WSE Token Optimization Layer
 
-A lightweight, standalone context-management layer designed to reduce unnecessary LLM token usage.
+A lightweight, standalone TypeScript layer for reducing unnecessary LLM context and payload size while preserving important state and information.
 
-## Scope
+## What it does
 
-This repository contains only the public-safe token-efficiency component of WSE.
+- Context optimization
+- Priority-based information selection
+- Deduplication
+- Token estimation
+- State delta extraction
+- Compact payload generation
+- Payload verification
+- Context processing pipeline
+- Secret boundary and redaction utilities
+- Configurable context and payload limits
 
-It does not contain the full WSE engine, world-simulation orchestration, campaign systems, hidden rules, proprietary runtime logic, or provider infrastructure.
+## Design goal
 
-## Goals
+The layer sits between application state and an LLM request.
 
-- Reduce repeated context sent to an LLM
-- Remove duplicate information
-- Prioritize important state
-- Emit state deltas instead of repeating unchanged state
-- Compact structured state before transmission
-- Respect configurable token or character budgets
+It helps reduce redundant context before it is sent to the model, making long-running applications more efficient while keeping important information available.
 
-## Conceptual Pipeline
+```text
+Application State
+       ↓
+Context Optimization
+       ↓
+State / Delta Processing
+       ↓
+Compact Payload
+       ↓
+Verification
+       ↓
+LLM Request
+npm install wse-token-optimization-layer
+npm install
+npm test
 
-Raw Context
-→ Normalize
-→ Deduplicate
-→ Prioritize
-→ Compute State Delta
-→ Compact Payload
-→ LLM Request
-
-## Safety Boundary
-
-The public package is deliberately separated from the complete WSE engine.
-
-No provider credentials, customer secrets, service-role keys, or private core logic belong in this repository.
-
-## Status
-
-WSE Token Optimization Layer v1.0.0
